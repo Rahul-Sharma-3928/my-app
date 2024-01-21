@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Task from "./Task";
 
 const Home = () => {
-  const [tasks, setTask] = useState([]);
+  const initialArrays = localStorage.getItem("tasks")
+    ? JSON.parse(localStorage.getItem("tasks"))
+    : [];
+  const [tasks, setTask] = useState(initialArrays);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -15,14 +18,19 @@ const Home = () => {
         description,
       },
     ]);
+    setTitle(" ");
+    setDescription(" ");
   };
   const deleteTask = (index) => {
     const newArr = tasks.filter((val, i) => {
       return i !== index;
     });
-    console.log(newArr);
     setTask(newArr);
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div className="container">
