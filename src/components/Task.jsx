@@ -1,13 +1,13 @@
 import React from "react";
 
-const Task = ({ title, description }) => {
+const Task = ({ title, description, index, deleteTask }) => {
   return (
     <div className="task">
       <div>
         <p>{title}</p>
         <span>{description}</span>
       </div>
-      <button>x</button>
+      <button onClick={() => deleteTask(index)}>x</button>
     </div>
   );
 };

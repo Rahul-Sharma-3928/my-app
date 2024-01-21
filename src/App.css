@@ -65,9 +65,10 @@ button:hover {
 }
 
 .task > div {
-  /* border: 1px solid red; */
   width: 100%;
+  gap: 10px;
 }
+
 
 .task button {
   display: flex;

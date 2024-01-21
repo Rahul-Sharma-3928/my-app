@@ -7,7 +7,7 @@ const Home = () => {
   const [description, setDescription] = useState("");
 
   const submitHandler = (e) => {
-    e.perventDefault();
+    e.preventDefault();
     setTask([
       ...tasks,
       {
@@ -15,6 +15,13 @@ const Home = () => {
         description,
       },
     ]);
+  };
+  const deleteTask = (index) => {
+    const newArr = tasks.filter((val, i) => {
+      return i !== index;
+    });
+    console.log(newArr);
+    setTask(newArr);
   };
 
   return (
@@ -37,7 +44,13 @@ const Home = () => {
         <button type="submit">ADD</button>
       </form>
       {tasks.map((item, index) => (
-        <Task key={index} title={item.title} description={item.description} />
+        <Task
+          key={index}
+          title={item.title}
+          description={item.description}
+          deleteTask={deleteTask}
+          index={index}
+        />
       ))}
     </div>
   );
